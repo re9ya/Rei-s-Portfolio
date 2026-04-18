@@ -6,89 +6,62 @@
     font-family: 'Courier New', Courier, monospace; /* A cute retro font */
 }
 
-/* Set up the desktop background */
-.desktop {
-    width: fit-content;
-    height: fit-content;
-    background-size: cover;
-    background-position: center;
-    padding: 20px;
-    display: flex;
-    flex-direction: column; /* Stacks your icons vertically */
-    align-items: flex-start;
-    gap: 30px; /* Space between icons */
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.desktop-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .desktop-background {
-    position: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; /* Ensures the image covers the entire area without gaps */
+    z-index: 0; /* Puts the background behind everything else */
+}
+
+.desktop {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0; /* Puts the background behind everything else */
+    z-index: 1; /* Above background */
 }
 
-.homeframe {
-    position: flex;
-    width: fit-content;
-    height: fit-content;
-    z-index: 1; /* Puts the frame behind the icons */
+.main-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* Above background, fits the screen borders */
 }
 
-/* Style the icons */
+.main-frame img {
+    width: 100vw;  /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    object-fit: fill; /* Stretches the image to fill exactly, no gaps but may distort aspect ratio */
+}
+
+
 .desktop-icon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100px;
-    cursor: pointer;
-    text-align: center;
-    color: white;
-    text-shadow: 1px 1px 2px black; /* Makes text readable on any background */
-    
-    /* THE ANIMATION: This line makes any changes (like hovering) smooth */
-    transition: transform 0.2s ease; 
+    position: absolute;
+    top: 20px; /* Adjust position as needed */
+    right: 20px; /* Adjust position as needed */
+    z-index: 3; /* On top */
 }
 
 .desktop-icon img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 8px;
-    object-fit: contain; /* Keeps your images from stretching weirdly */
-}
-
-/* What happens when your mouse hovers over the icon */
-.desktop-icon:hover {
-    transform: scale(1.15); /* Enlarges the icon slightly! */
-}
-
-/* --- Window Styles --- */
-.window {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Centers the window perfectly */
-    width: 400px;
-    background-color: #f0f0f0;
-    border: 2px solid #333;
-    box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
-    z-index: 10; /* Ensures the window stays on top of the icons */
-}
-
-.window-header {
-    background-color: #000080; /* Classic retro blue header */
-    color: white;
-    padding: 5px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.window-content {
-    padding: 20px;
-}
-
-/* A utility class to easily hide things */
-.hidden {
-    display: none;
+    display: block;
+    width: 50px; /* Adjust size as needed */
+    height: 50px;
 }
